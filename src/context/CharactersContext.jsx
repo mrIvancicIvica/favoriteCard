@@ -7,8 +7,6 @@ export const CharactersContext = createContext();
 
 export const CharactersProvider = ({ children }) => {
   const [characters, setCharacters] = useState([]);
-  const [favCharacter, setFavCharacter] = useState([]);
-  console.log(' characters', characters);
 
   const handleFavorite = (id) => {
     const allItems = [...characters];
@@ -35,21 +33,12 @@ export const CharactersProvider = ({ children }) => {
     getCharacters();
   }, []);
 
-  const addFavCharacter = (character) => {
-    setFavCharacter([...favCharacter, character]);
-  };
 
-  const removeFavCharacter = (character) => {
-    setFavCharacter(favCharacter.filter((char) => char.id !== character.id));
-  };
 
   return (
     <CharactersContext.Provider
       value={{
         characters,
-        addFavCharacter,
-        favCharacter,
-        removeFavCharacter,
         handleFavorite,
       }}
     >
